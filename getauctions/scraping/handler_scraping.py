@@ -198,12 +198,3 @@ def _getNavListLinks(connection, LINK_BOE_URL = 'https://subastas.boe.es')->List
             a = li.find('a')
             navListLinks.append(LINK_BOE_URL + str(a['href'])[1:])
     return navListLinks
-
-# Baleares should be a dynamic variable
-comunidad_content_data_link = getInformationPageLinkForGivenComunidad('Baleares')
-
-result_search_for_comunidad_links = getSpecificAuctionsLinksForGivenComunidad(comunidad_content_data_link)
-
-informationForGivenAuction = getInformationForGivenAuction(result_search_for_comunidad_links)
-
-print(informationForGivenAuction)
