@@ -1,15 +1,14 @@
-import handler_scraping
+from . import handler_scraping
 import typing
 # Baleares should be a dynamic variable
 
-if __name__ == "__main__":
+def scraper(communidad):
+    comunidad_content_data_link = handler_scraping.getInformationPageLinkForGivenComunidad(communidad)
 
-    def scraping(communidad:str = 'Baleares'):
+    result_search_for_comunidad_links = handler_scraping.getSpecificAuctionsLinksForGivenComunidad(comunidad_content_data_link)
 
-        comunidad_content_data_link = handler_scraping.getInformationPageLinkForGivenComunidad(communidad)
+    informationForGivenAuction = handler_scraping.getInformationForGivenAuction(result_search_for_comunidad_links)
 
-        result_search_for_comunidad_links = handler_scraping.getSpecificAuctionsLinksForGivenComunidad(comunidad_content_data_link)
+    return informationForGivenAuction
 
-        informationForGivenAuction = handler_scraping.getInformationForGivenAuction(result_search_for_comunidad_links)
 
-        return informationForGivenAuction

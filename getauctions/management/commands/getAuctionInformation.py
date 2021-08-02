@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand, CommandError
-from getauctions.management.scraping.main_scraper import scraping
+from getauctions.management.scraping.main_scraper import scraper
 from typing import Dict, List
 
 from getauctions.models import auctioninfo
@@ -13,7 +13,9 @@ class Command(BaseCommand):
 
         help = 'handling to insert the data from the BOE website into the database'
 
-        auctions:Dict = scraping(options['communidad'])
+        auctions = scraper(options['communidad'])
+
+        print(auctions)
         '''
         identificador = models.CharField(max_length=20)
         tipo_subasta = models.CharField(max_length=20)
@@ -39,7 +41,7 @@ class Command(BaseCommand):
             localidad = auction.get('Localidad')
             Descripcion = auction.get('Descripción')
 
-            auction = auctioninfo(identificador = identificador,
+            totable = auctioninfo(identificador = identificador,
                 tipo_subasta = tipo_subasta,
                 fecha_inicio = fecha_inicio,
                 fecha_conclusion = fecha_conclusion,
@@ -49,13 +51,13 @@ class Command(BaseCommand):
                 cantidad_reclamada = cantidad_reclamada,
                 localidad = localidad,
                 descripcion = Descripcion)
-            auction.save()
-            
+            totable.save()
+                
             try:
-                auction.save()
+                totable.save()
                 # if adding to the database was successful then give feedback
-                self.stdout.write(self.style.SUCCESS('Added Meter'))
+                self.stdout.write(self.style.SUCCESS('Added Auction'))
             except:
-                raise CommandError('Flow File database dump failed')
+                raise CommandError('Auction database dump failed')
             
 
