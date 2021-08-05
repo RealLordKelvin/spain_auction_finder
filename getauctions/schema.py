@@ -1,11 +1,11 @@
 import graphene
 from graphene_django import DjangoObjectType
-from .models import auctioninfo
+from .models import AuctionInfo
 
 
 class AuctionInfoType(DjangoObjectType):
     class Meta: 
-        model = auctioninfo
+        model = AuctionInfo
         
         fields = (
             'identificador',
@@ -26,7 +26,7 @@ class Query(graphene.ObjectType):
 
     def resolve_auctioninfos(root, info, **kwargs):
         # Querying a list
-        return auctioninfo.objects.all()
+        return AuctionInfo.objects.all()
 
 '''
 class AuctionInfoInput(graphene.InputObjectType):

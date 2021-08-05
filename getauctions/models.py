@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class auctioninfo(models.Model):
+class AuctionInfo(models.Model):
     
     # An MPAN is commonly separated into two sections: the core and the top line data. 
     # The core is the final 13 digits and is the unique identifier.
@@ -16,6 +16,12 @@ class auctioninfo(models.Model):
     cantidad_reclamada = models.CharField(max_length = 50, null=True, blank = True)
     localidad = models.CharField(max_length = 50,null=True, blank = True)
     descripcion = models.CharField(max_length = 300, null=True, blank = True)
+
+    class Meta:
+      verbose_name_plural = "Auctions"
+
+    def __str__(self):
+        return self.identificador
    
 
     '''If user request that there should not be repeated database entries add folowing line below'''

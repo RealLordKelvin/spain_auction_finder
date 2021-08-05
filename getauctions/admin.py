@@ -2,6 +2,6 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import auctioninfo
+from .models import AuctionInfo
 
-admin.site.register(auctioninfo)
+admin.site.register(AuctionInfo)
