@@ -1,0 +1,40 @@
+
+
+<h1>Search Results</h1>
+
+<div>
+    <ul>
+        {% for val in object_list %}
+          <li>
+              Identificador Numero: {{ val.identificador }}
+          </li>
+          <li>
+              Localidad: {{ val.localidad }}
+            </li>
+            <li>
+              Cantidad Reclamada: {{ val.cantidad_reclamada }}
+            </li>
+            <li>
+              Fecha de Inicio: {{ val.fecha_inicio }}
+            </li>
+            <li>
+              Fecha de Conclusion: {{ val.fecha_conclusion }}
+            </li>
+            <li>
+              Importe de Deposito: {{ val.importe_deposito }}
+            </li>
+            <li>
+              Puja Minima: {{ val.puja_minima }}
+            </li>
+            <li>
+              Tasacion: {{ val.tasacion }}
+            </li>
+            <li>
+              Descripcion Del Objecto: {{ val.descripcion }}
+            </li>
+        {% endfor %}
+      </ul>
+
+</div>
+
+

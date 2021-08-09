@@ -32,7 +32,7 @@ def _comunidad_value_finder(comunidad:str)->str:
     
     comunidad = comunidad.lower()
     
-    if comunidad == 'Alava'.lower()or comunidad == 'Ávala'.lower():
+    if comunidad == 'Alava'.lower() or comunidad == 'Ávala'.lower():
         value = '01'
     elif comunidad == 'Albacete'.lower():
         value = '02'

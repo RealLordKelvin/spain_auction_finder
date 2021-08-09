@@ -15,22 +15,9 @@ class Command(BaseCommand):
 
         auctions = scraper(options['communidad'])
 
-        print(auctions)
-        '''
-        identificador = models.CharField(max_length=20)
-        tipo_subasta = models.CharField(max_length=20)
-        fecha_inicio = models.CharField(max_length=10) # to be handled
-        fecha_conclusion = models.CharField(max_length=10)
-        tasacion = models.CharField(max_length = 200)
-        puja_minima = models.CharField(max_length = 50)
-        importe_deposito = models.CharField(max_length = 50)
-        cantidad_reclamada = models.CharField(max_length = 50)
-        localidad = models.CharField(max_length = 50)
-        Descripcion = models.CharField(max_length = 300)
-   
-        '''
         for auction in auctions:
             identificador = auction.get('Identificador')
+            comunidad = auction.get('Comunidad')
             tipo_subasta = auction.get('Tipo de subasta')
             fecha_inicio = auction.get('Fecha de inicio').split(' ')[0]
             fecha_conclusion = auction.get('Fecha de conclusión').split(' ')[0]
@@ -38,10 +25,12 @@ class Command(BaseCommand):
             puja_minima = auction.get('Puja mínima')
             importe_deposito = auction.get('Importe del depósito')
             cantidad_reclamada = auction.get('Cantidad reclamada')
-            localidad = auction.get('Localidad')
+            codigo_postal = auction.get('Localidad').split(' ')[0]
+            ciudad = auction.get('Localidad').split(' ')[1]
             Descripcion = auction.get('Descripción')
 
             totable = auctioninfo(identificador = identificador,
+                comunidad = comunidad,
                 tipo_subasta = tipo_subasta,
                 fecha_inicio = fecha_inicio,
                 fecha_conclusion = fecha_conclusion,
@@ -49,7 +38,8 @@ class Command(BaseCommand):
                 puja_minima = puja_minima,
                 importe_deposito = importe_deposito,
                 cantidad_reclamada = cantidad_reclamada,
-                localidad = localidad,
+                codigo_postal = codigo_postal,
+                ciudad = ciudad,
                 descripcion = Descripcion)
             totable.save()
                 
