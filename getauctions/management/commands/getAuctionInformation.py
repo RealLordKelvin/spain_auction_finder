@@ -2,7 +2,7 @@ from django.core.management.base import BaseCommand, CommandError
 from getauctions.management.scraping.main_scraper import scraper
 from typing import Dict, List
 
-from getauctions.models import auctioninfo
+from getauctions.models import AuctionInfo
 
 class Command(BaseCommand):
 
@@ -17,7 +17,8 @@ class Command(BaseCommand):
 
         for auction in auctions:
             identificador = auction.get('Identificador')
-            comunidad = auction.get('Comunidad')
+            direccion = auction.get('Dirección')
+            provincia = auction.get('Provincia')
             tipo_subasta = auction.get('Tipo de subasta')
             fecha_inicio = auction.get('Fecha de inicio').split(' ')[0]
             fecha_conclusion = auction.get('Fecha de conclusión').split(' ')[0]
@@ -25,12 +26,14 @@ class Command(BaseCommand):
             puja_minima = auction.get('Puja mínima')
             importe_deposito = auction.get('Importe del depósito')
             cantidad_reclamada = auction.get('Cantidad reclamada')
-            codigo_postal = auction.get('Localidad').split(' ')[0]
-            ciudad = auction.get('Localidad').split(' ')[1]
-            Descripcion = auction.get('Descripción')
+            codigo_postal = auction.get('Código Postal')
+            ciudad = auction.get('Localidad')
+            correo_electronico = auction.get('Correo electrónico')
+            descripcion = auction.get('Descripción')
 
-            totable = auctioninfo(identificador = identificador,
-                comunidad = comunidad,
+            totable = AuctionInfo(identificador = identificador,
+                direccion = direccion,
+                provincia = provincia,
                 tipo_subasta = tipo_subasta,
                 fecha_inicio = fecha_inicio,
                 fecha_conclusion = fecha_conclusion,
@@ -40,7 +43,9 @@ class Command(BaseCommand):
                 cantidad_reclamada = cantidad_reclamada,
                 codigo_postal = codigo_postal,
                 ciudad = ciudad,
-                descripcion = Descripcion)
+                correo_electronico = correo_electronico,
+                descripcion = descripcion,
+                )
             totable.save()
                 
             try:

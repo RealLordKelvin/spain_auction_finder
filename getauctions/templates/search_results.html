@@ -5,11 +5,17 @@
 <div>
     <ul>
         {% for val in object_list %}
-          <li>
+            <li>
               Identificador Numero: {{ val.identificador }}
-          </li>
-          <li>
-              Localidad: {{ val.localidad }}
+            </li>
+            <li>
+              Ciudad: {{ val.ciudad }}
+            </li>
+            <li>
+                Codigo Postal: {{ val.codigo_postal }}
+            </li>
+            <li>
+                comunidad: {{ val.comuniad }}
             </li>
             <li>
               Cantidad Reclamada: {{ val.cantidad_reclamada }}
@@ -30,8 +36,18 @@
               Tasacion: {{ val.tasacion }}
             </li>
             <li>
+                Correo Electronico: {{ val.correo_electronico }}
+              </li>
+              <li>
+                Direccion: {{ val.direccion }}
+              </li>
+            <li>
               Descripcion Del Objecto: {{ val.descripcion }}
             </li>
+            
+                ---------------------------------------------
+            
+
         {% endfor %}
       </ul>
 

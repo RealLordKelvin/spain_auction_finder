@@ -1,3 +1,5 @@
+'''
+
 import graphene
 from graphene_django import DjangoObjectType
 from .models import AuctionInfo
@@ -95,3 +97,4 @@ class Mutation(graphene.ObjectType):
     update_auction = UpdateAuctionInfo.Field()
 '''
 schema = graphene.Schema(query=Query)#, mutation=Mutation)
+'''
