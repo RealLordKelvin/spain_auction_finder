@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'getauctions',
     'graphene_django',
+    'rest_framework',
 ]
 
 GRAPHENE = {

@@ -5,12 +5,18 @@ from django.db.models import Q
 
 from django.views import generic
 
-'''
-def HomePageView(response):
-    return render(response, "getauctions/home.html", {})
+from .serializers import AuctionInfoSerializer
+from rest_framework import generics
 
-'''
-    #return render(response, "getauctions/search_results.html", {'model': model})
+class AuctionInfoList(generics.ListCreateAPIView):
+    queryset = AuctionInfo.objects.all()
+    serializer_class = AuctionInfoSerializer
+    
+class AuctionInfoDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = AuctionInfo.objects.all()
+    serializer_class = AuctionInfoSerializer
+
+
 
 def Index(response, identificador):
     model = AuctionInfo.objects.get(identificador=identificador)
