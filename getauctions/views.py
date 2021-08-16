@@ -35,5 +35,5 @@ class SearchResultsView(ListView):
         object_list = AuctionInfo.objects.filter(
             Q(provincia__icontains=query)
         )
-        print(object_list)
+        #print(object_list)
         return object_list

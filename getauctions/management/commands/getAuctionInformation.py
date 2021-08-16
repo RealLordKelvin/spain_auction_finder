@@ -46,13 +46,15 @@ class Command(BaseCommand):
                 correo_electronico = correo_electronico,
                 descripcion = descripcion,
                 )
-            totable.save()
                 
             try:
+                print('saving')
                 totable.save()
                 # if adding to the database was successful then give feedback
                 self.stdout.write(self.style.SUCCESS('Added Auction'))
             except:
-                raise CommandError('Auction database dump failed')
+                # Todo: Log file 
+                self.stdout.write(self.style.WARNING('Passing, Auction already exist'))
+                pass
             
 

@@ -17,7 +17,7 @@ class AuctionInfo(models.Model):
     codigo_postal = models.CharField(max_length = 5, null=True, blank = True)
     ciudad = models.CharField(max_length = 50,null=True, blank = True)
     correo_electronico = models.CharField(max_length = 300,null=True, blank = True)
-    descripcion = models.CharField(max_length = 500, null=True, blank = True)
+    descripcion = models.CharField(max_length = 1000, null=True, blank = True)
 
     class Meta:
       verbose_name_plural = "Auctions"
