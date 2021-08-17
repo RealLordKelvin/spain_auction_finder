@@ -39,14 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'getauctions',
-    'graphene_django',
     'rest_framework',
+    'djcelery', 
 ]
 
 GRAPHENE = {
  'SCHEMA': 'src.schema.schema'
 }
 
+
+CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
