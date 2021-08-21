@@ -6,6 +6,7 @@ class AuctionInfoSerializer(serializers.ModelSerializer):
         model = AuctionInfo
         fields = [
             'pk',
+            'timestamp',
             'identificador',
             'direccion',
             'provincia',

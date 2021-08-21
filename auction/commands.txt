@@ -1,0 +1,8 @@
+
+- starting celery worker
+
+celery -A auction worker -l info
+
+- starting flower 
+
+celery -A auction flower --loglevel=info

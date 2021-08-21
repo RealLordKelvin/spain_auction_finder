@@ -3,8 +3,18 @@
 <h1>Search Results</h1>
 
 <div>
+  <INPUT TYPE="button" VALUE="Back" onClick="history.go(-1);">
+    <a href="http://127.0.0.1:8000/admin/">  
+      <input type="button" VALUE="Admin"/>  
+     </a>
+</div>
+
+<div>
     <ul>
         {% for val in object_list %}
+          <li>
+            Created: {{ val.timestamp }}
+          </li>
             <li>
               Identificador Numero: {{ val.identificador }}
             </li>

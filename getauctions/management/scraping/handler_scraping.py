@@ -11,7 +11,7 @@ def _getWebsiteConnection(page_url: str):
     try:
         conn = requests.get(page_url)
     except:
-        raise ValueError('connection to website was not possible, check the url of the website')
+        return None
     soup = BeautifulSoup(conn.text, 'html.parser')
 
     return soup
@@ -19,9 +19,18 @@ def _getWebsiteConnection(page_url: str):
 def getInformationPageLinkForGivenComunidad(comunidad:str, LINK_BOE_URL = 'https://subastas.boe.es')->str:
     
     conn_boe = _getWebsiteConnection(LINK_BOE_URL)
+
+    if conn_boe == None:
+        return None
     comunidadValue = _comunidad_value_finder(comunidad)
-    comunidad_content_name = conn_boe.find('option', attrs={'value': comunidadValue})
-    comunidad_content = conn_boe.find('area', attrs={'title': comunidad_content_name.text})
+    try:
+        comunidad_content_name = conn_boe.find('option', attrs={'value': comunidadValue})
+    except:
+        return None
+    try:
+        comunidad_content = conn_boe.find('area', attrs={'title': comunidad_content_name.text})
+    except:
+        return None
     comunidad_content_data_link = LINK_BOE_URL + comunidad_content.attrs['href']
     comunidad_content_data_link = comunidad_content_data_link.strip()
     
@@ -145,7 +154,10 @@ def _comunidad_value_finder(comunidad:str)->str:
 def getSpecificAuctionsLinksForGivenComunidad(comunidad_content_data_link:str, LINK_BOE_URL = 'https://subastas.boe.es')->List[str]:
 
     conn_comunidad = _getWebsiteConnection(comunidad_content_data_link)
-    comunidad_content = conn_comunidad.find_all('a',attrs={'class': 'resultado-busqueda-link-defecto'},href=True)# attrs={'title': comunidad})
+    if conn_comunidad == None:
+        return None
+    else:
+        comunidad_content = conn_comunidad.find_all('a',attrs={'class': 'resultado-busqueda-link-defecto'},href=True)# attrs={'title': comunidad})
     resultado_busqueda_link_collector = []
 
     for result in range(len(comunidad_content)):

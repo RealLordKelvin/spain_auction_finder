@@ -4,6 +4,7 @@ from django.db import models
 
 class AuctionInfo(models.Model):
     
+    timestamp = models.DateTimeField(auto_now_add=True)
     identificador = models.CharField(max_length=50)
     direccion = models.CharField(max_length = 100,null=True, blank = True)
     provincia = models.CharField(max_length = 25,null=True, blank = True)
