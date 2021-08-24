@@ -33,7 +33,8 @@ class SearchResultsView(ListView):
     def get_queryset(self): # new
         query = self.request.GET.get('q')
         object_list = AuctionInfo.objects.filter(
-            Q(provincia__icontains=query)
+            Q(provincia__icontains=query) | Q(identificador__icontains=query)
         )
+        
         #print(object_list)
         return object_list

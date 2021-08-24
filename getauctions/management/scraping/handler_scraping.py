@@ -198,7 +198,15 @@ def _getTableInformation(connection):
     myValues = list(auctionTableDictionary[1].values())
 
     for i in range(len(myKeys)):
-        tableInfo[myKeys[i]] = myValues[i]
+        if myKeys[i] not in tableInfo:
+            tableInfo[myKeys[i]] = myValues[i]
+        if myKeys[i] == 'Dirección':
+            print('DEBBUG')
+            print(myValues[i])
+
+    
+    
+
     return tableInfo
     
 
